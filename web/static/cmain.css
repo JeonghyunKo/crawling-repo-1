@@ -1,0 +1,28 @@
+
+			.colorset {
+			  background-color: #FFEC5F;
+			  }
+			.imgsize {
+			  width: 100%;
+			  max-width: 600px;
+			  }
+			.wrap {
+			  display: table-cell;
+			  vertical-align: middle;
+			  }
+			
+			p {
+			  font-family: 'Raleway', sans-serif;
+			  font-weight: 400;
+			}
+			h3 {
+			  font-family: 'Raleway', sans-serif;
+			  font-weight: 600;
+			}
+	  
+			.bold {
+			  font-family: 'Raleway', sans-serif;
+			  font-weight: 600;
+			}
+		  
+	
