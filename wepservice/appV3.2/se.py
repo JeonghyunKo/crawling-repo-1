@@ -17,6 +17,14 @@ def mainpage():
 def channel(chname):
     return 'Hello, %s'%(chname)    
 
+@app.route('/test', methods=["GET", "POST"]) 
+def index():
+    from db import eachch
+    searchword = request.form["searchword"]   
+    result = eachch.ch_info(searchword)  
+    return render_template("sample.html", result=result)
+    
+
 
 @app.route('/hed')
 def hello_pybo():
@@ -32,10 +40,10 @@ def brandbrief():
     brand_view = brief_brand.brief_view()
     brand_video = brief_brand.brief_video()
     video_list = brief_brand.video_list()
-    graph = brief_brand.graph_df()
+    graph_data = brief_brand.graph_data()
 
     return render_template("brand.html", sub = brand_sub, view = brand_view, 
-    video = brand_video, video_list = video_list, graph = graph)
+    video = brand_video, video_list = video_list, graph_data = graph_data)
 
 
 @app.route('/influencer')
@@ -52,6 +60,19 @@ def influbrief():
 def allvideo():
     return render_template("allVideo.html")    
 
+# @app.route("/channel/")
+# def eachchannel():
+#     result = {"code": 200}
+#     chname = request.values.get("findch")
+#     print(chname)
+#     result["sentence"] = chname
+
+@app.route('/sample')
+def chinformation():
+    findname = "BMW"
+    from db import eachch
+    result = eachch.ch_info(findname)
+    return render_template("sample.html", result = result)    
     
 app.run(debug=True, port=5000)
 

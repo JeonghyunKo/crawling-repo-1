@@ -12,6 +12,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.1.1/highcharts.min.js"></script>
 
 
+      
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
@@ -67,49 +68,13 @@
         #ary1{
             padding-top:30px;
         }
-
-        /*  ----------------------------------------------------------------------view chart start------------------------------------------------- */
-        
-        .highcharts-figure, .highcharts-data-table table {
-        min-width: 310px; 
-        max-width: 800px;
-        margin: 1em auto;
-        }
-
-        #container {
-            height: 400px;
-        }
-
-        .highcharts-data-table table {
-          font-family: Verdana, sans-serif;
-          border-collapse: collapse;
-          border: 1px solid #EBEBEB;
-          margin: 10px auto;
-          text-align: center;
-          width: 100%;
-          max-width: 500px;
-        }
-        .highcharts-data-table caption {
-            padding: 1em 0;
-            font-size: 1.2em;
-            color: #555;
-        }
-        .highcharts-data-table th {
-          font-weight: 600;
-            padding: 0.5em;
-        }
-        .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-            padding: 0.5em;
-        }
-        .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-            background: #f8f8f8;
-        }
-        .highcharts-data-table tr:hover {
-            background: #f1f7ff;
-        }
-         /*  ----------------------------------------------------------------------view chart end------------------------------------------------- */
       </style>
-
+>
+      <!-- <script>
+          $(functio(){
+            $('.nav-link active').click(function)
+          })
+      </script> -->
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column colorset">
 		<header class="mb-au auto">
 	    	<div>
@@ -185,10 +150,8 @@
                       <!-- pieeeee -------------------------------------------------------------------------------------- -->
                        <div class="row" id="ary1">
                          <hr>
-                         
-              
-                        <!-- <div class="col-sm">
-                          <table class="table-white table-hover pb-5 mb-2 mx-auto">
+                        <div class="col-sm">
+                          <table class="table-white table-hover pb-5 mb-5 mx-auto">
                             <thead>
                               <h2 class="py-3 font -sm-1">Week View Count</h2>
                               <tr class="table-light">
@@ -199,17 +162,20 @@
                               </tr>
                             </thead>
                           </table>
-                          </div> -->
+                          </div>
               
                           <div class="col-sm">
                             <figure class="highcharts-figure">
                               <div id="container"></div>
-                                <p class="highcharts-description">Chart showing stacked horizontal bars. This type of visualization is great for comparing data that accumulates up to a sum.</p>
+                              
+                              <p class="highcharts-description">
+                                Chart showing stacked horizontal bars. This type of visualization is
+                                great for comparing data that accumulates up to a sum.
+                              </p>
                             </figure>
                           </div>
                         </div>
                         <!-- section end -->
-                        
                       
 
 	              </div>
@@ -278,27 +244,25 @@
                       </tbody>
                     </table>
                   </div>
-                  <div>
-                  </div>
-
-
+				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.1.1/highcharts.min.js"></script>
         <script>
-          
-
+                                
           Highcharts.chart('container', {
             chart: {
                 type: 'bar'
             },
             title: {
-                text: 'brand'
+                text: 'Views'
             },
             xAxis: {
-                categories: ['brand_increase']
+                categories: ['viewcount']
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Total brand increase'
+                    text: 'Gained Views'
                 }
             },
             legend: {
@@ -310,27 +274,35 @@
                 }
             },
             series: [{
-                name: '{{graph_data.Brand[0]}}',
-                data: [{{graph_data.increase[0]}}]
+                name: '{{graph.Brand[0]}}',
+                data: [{{graph.increase[0]}}]
             }, {
-                name: '{{graph_data.Brand[1]}}',
-                data: [{{graph_data.increase[1]}}]
+                name: '{{graph.Brand[1]}}',
+                data: [{{graph.increase[1]}}]
             }, {
-                name: '{{graph_data.Brand[2]}}',
-                data: [{{graph_data.increase[2]}}]
+                name: '{{graph.Brand[2]}}',
+                data: [{{graph.increase[2]}}]
             }, {
-                name: '{{graph_data.Brand[3]}}',
-                data: [{{graph_data.increase[3]}}]
+                name: '{{graph.Brand[3]}}',
+                data: [{{graph.increase[3]}}]
             }, {
-                name: '{{graph_data.Brand[4]}}',
-                data: [{{graph_data.increase[4]}}]
+                name: '{{graph.Brand[4]}}',
+                data: [{{graph.increase[4]}}]
             }, {
-                name: '{{graph_data.Brand[5]}}',
-                data: [{{graph_data.increase[5]}}]
+                name: '{{graph.Brand[5]}}',
+                data: [{{graph.increase[5]}}]
+            }, {
+                name: '{{graph.Brand[6]}}',
+                data: [{{graph.increase[6]}}]
+            }, {
+                name: '{{graph.Brand[7]}}',
+                data: [{{graph.increase[7]}}]
+            }, {
+                name: '{{graph.Brand[8]}}',
+                data: [{{graph.increase[8]}}]
             }]
           });
         </script>
-        
 
 			</main>
 	        <footer class="mt-auto text-white-50 colorset">

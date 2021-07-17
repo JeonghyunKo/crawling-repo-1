@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.1.1/highcharts.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+        
+		<meta charset="EUC-KR">
+
+<title>Social Explorer</title>
+
+</head>
+<body class="d-flex h-100 text-center text-white colorset">
+	<style>
+        .colorset {
+          background-color: #141414;
+          }
+        .imgsize {
+          width: 100%;
+          max-width: 600px;
+          }
+        .wrap {
+          display: table-cell;
+          vertical-align: middle;
+          }
+        
+        p {
+          font-family: 'Raleway', sans-serif;
+          font-weight: 400;
+        }
+        h3 {
+          font-family: 'Raleway', sans-serif;
+          font-weight: 600;
+        }
+  
+        .bold {
+          font-family: 'Raleway', sans-serif;
+          font-weight: 600;
+        }
+      
+      </style>
+	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column colorset">
+		<header class="mb-au auto">
+	    	<div>
+				<h3 class="float-md-start mb-0">Cover</h3>
+				<nav class="nav nav-masthead justify-content-center float-md-end">
+					<a class="nav-link active" aria-current="page" href="#">Home</a>
+					<a class="nav-link" href="http://127.0.0.1:5000/brand">Brand</a>
+					<a class="nav-link" href="http://127.0.0.1:5000/influencer">Influencer</a>
+				</nav>
+			</div>
+		</header>
+		<main>
+	    	<div>
+	        	<img src="static/images/beetle.png" alt="car" class="img-fluid imgsize">
+	        </div>
+	        <h1 class="bold">Social Explorer</h1>
+	        <p class="lead">Explore the automotive industry via Youtube brand channels and influencers
+	        </p>
+	        <div class="mx-auto col-sm-3">
+				<form action="/test" method="post">
+	        	<div class="input-group mb-3 pb-5">
+					
+	            	<input name="searchword" type="text" class="form-control chname" placeholder="Channel Name" aria-label="Channel name" aria-describedby="button-addon2">
+	                <button class="btn btn-outline-light fw-bold explore" type="submit" id="button-addon2">explore!</button>
+	
+				</div>
+				</form>
+	       </div>
+	            <div class="container px-10">
+	              <div class="row">
+	               <div class="col-sm">
+	                 <table class="table table-striped table-dark table-hover pb-5 mb-5 mx-auto">
+	                    <thead>
+	                    	<h3 class="py-3 font">Brand Channels</h3>
+	                    	<tr class="table-light">
+		                        <th scope="col">Rank</th>
+		                        <th scope="col" colspan="5">Channel</th>
+		                        <th scope="col" colspan="5">Subscribers</th>
+
+	                    	</tr>
+	                    </thead>
+	                    <tbody>
+		                    <tr class="table-light">
+		                        <th scope="row">1st</th>
+		                        <td colspan="5">{{brand[0].Brand}}</td>
+		                        <td colspan="5">{{brand[0].Subscribe}}</td>
+		                    </tr>
+		                    <tr class="table-light">
+		                        <th scope="row">2nd</th>
+		                        <td colspan="5">{{brand[1].Brand}}</td>
+		                        <td colspan="5">{{brand[1].Subscribe}}</td>
+
+		                    </tr>
+		                    <tr class="table-light">
+		                        <th scope="row">3rd</th>
+		                        <td colspan="5">{{brand[2].Brand}}</td>
+		                        <td colspan="5">{{brand[2].Subscribe}}</td>
+		                    </tr>
+
+							<tr class="table-light">
+		                        <th scope="row">4th</th>
+		                        <td colspan="5">{{brand[3].Brand}}</td>
+		                        <td colspan="5">{{brand[3].Subscribe}}</td>
+		                    </tr>
+
+							<tr class="table-light">
+		                        <th scope="row">5th</th>
+		                        <td colspan="5">{{brand[4].Brand}}</td>
+		                        <td colspan="5">{{brand[4].Subscribe}}</td>
+		                    </tr>
+	                    </tbody>
+	                  </table>
+	                  <a href="http://127.0.0.1:5000/brand" class="btn btn-outline-light mx-5 px-5" >See More</a>
+					</div>
+
+
+					<div class="col-sm mx-auto">
+				    	<table class="table table-striped table-dark table-hover pb-5 mb-5 mx-auto">
+	                    	<thead>
+	                    		<h3 class="py-3 font">Influencer Channels</h3>
+								<tr class="table-light">
+		                       		<th scope="col">Rank</th>
+		                       		<th scope="col" colspan="3">Channel</th>
+				                    <th scope="col" colspan="3">Subscribers</th>
+			                   	</tr>
+			            	</thead>
+			            	<tbody>
+				        		<tr class="table-light">
+				            		<th scope="row">1st</th>
+				                		<td colspan="3"> {{influencer[0].Brand}} </td>
+				                    	<td colspan="3">{{influencer[0].Subscribe}}</td>
+				            	</tr>
+				            	<tr class="table-light">
+				               		<th scope="row">2nd</th>
+				                		<td colspan="3">{{influencer[1].Brand}}</td>
+				            	    	<td colspan="3">{{influencer[1].Subscribe}}</td>
+				            	</tr>
+				            	<tr class="table-light">
+				            		<th scope="row">3rd</th>
+										<td colspan="3">{{influencer[2].Brand}}</td>
+										<td colspan="3">{{influencer[2].Subscribe}}</td>
+				           		</tr>
+
+								<tr class="table-light">
+				            		<th scope="row">4th</th>
+										<td colspan="3">{{influencer[3].Brand}}</td>
+										<td colspan="3">{{influencer[3].Subscribe}}</td>
+				           		</tr> 
+							    <tr class="table-light">
+				            		<th scope="row">5th</th>
+										<td colspan="3">{{influencer[4].Brand}}</td>
+										<td colspan="3">{{influencer[4].Subscribe}}</td>
+				           		</tr>
+							</tbody>
+						</table>
+	                   	<a href="http://127.0.0.1:5000/influencer" class="btn btn-outline-light mx-5 px-5">See More</a>
+					</div>
+	              </div>
+	            </div>
+
+				<!-- influencer script -->
+				
+				<!-- <div class="print"> inf1 {{influencer}}</div> -->
+				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+				
+				<script type="text/javascript"> 
+        			$(document).ready(function() {
+           				$('.explore').on('click', function() {
+               				var text = $('.chname').val();
+                			console.log(text);
+						})
+					})
+
+				  //$.getJSON(influencer, function(ranking_inf){
+				        //  console.log("php " + influencer);
+						//   var influencer = {{influnencer}}
+						//    $(".influencer-1-name").empty();
+						//    var rank1 = "<p>" + influencer[1]
+						   //$(".influencer-1-name").append(rank1)
+								  
+						
+						 	 //for(var i=0; i < response.categories.length; i++){
+						 	  //var tag = "<p>" + response.categories[i];
+						 	  //tag += " : " + response.datas[i] + "%</p>";
+						 	  //$(".alert").append(tag);
+						    //})
+	
+				
+				</script>
+				<script>
+					
+					</script>
+
+
+			</main>
+	        <footer class="mt-auto text-white-50 colorset">
+	            <p>Made by  <a href="https://getbootstrap.com/" class="text-white colorset">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+	        </footer>
+			<div>
+				
+				<a class="nav-link active"  href="https://fastcampus.co.kr/">
+					<img src="static/images/yjn.png" alt="car" class="img-fluid imgsize">
+				</a>
+
+
+			</div>
+		</div>
+	</body>
+</html>
