@@ -1,8 +1,10 @@
 from flask import *
+from flask_cors import CORS
 from db import login_mysql
 mydb, cursor = login_mysql.login()
 
 app = Flask(__name__)
+CORS(app, resources={r'*': {'origins': 'https://www.banner.yt/'}})
 
 @app.route("/main")
 def mainpage():
@@ -17,12 +19,16 @@ def mainpage():
 def channel(chname):
     return 'Hello, %s'%(chname)    
 
-@app.route('/test', methods=["GET", "POST"]) 
+@app.route('/channelinfo', methods=["GET", "POST"]) 
 def index():
     from db import eachch
     searchword = request.form["searchword"]   
     result = eachch.ch_info(searchword)  
-    return render_template("sample.html", result=result)
+    chid = result[0]["Channel_Id"]
+    videols = eachch.ch_video(chid)  
+    detail = eachch.ch_detail(chid)
+    newlist = eachch.ch_recent(chid)
+    return render_template("channelinfo.html", result=result, videols=videols, detail=detail, newlist=newlist)
     
 
 
@@ -52,8 +58,11 @@ def influbrief():
     influ_sub = brief_influencer.brief_sub()
     influ_view = brief_influencer.brief_view()
     influ_video = brief_influencer.brief_video()
+    video_list = brief_influencer.video_list()
+    graph_data = brief_influencer.graph_data()
 
-    return render_template("influencer.html", sub = influ_sub, view = influ_view, video = influ_video) 
+    return render_template("influencer.html", sub = influ_sub, view = influ_view, 
+    video = influ_video, video_list = video_list, graph_data = graph_data) 
 
 
 @app.route('/allVideo')

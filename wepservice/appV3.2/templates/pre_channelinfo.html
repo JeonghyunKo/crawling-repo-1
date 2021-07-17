@@ -83,15 +83,13 @@
                    </table>
                    <!-- <button type="button" class="btn btn-outline-dark mx-5 px-5">See More</button> -->
                  </div>
-               
-
-
-         
+                 
+                 
                  <div class="col-sm">
                   <table class="table-white table-hover pb-5 mb-5 mx-auto">
                        <thead>
                            <br><br><br>
-                           <h2 class="py-3 font">{{result.Chnnel_Title}}</h2>
+                           <h2 class="py-3 font">{{result[0].Chnnel_Title}}</h2>
                            <tr class="table-light">
                                <th scope="col" id="th">UPLOAD</th>
                                <th scope="col" id="th">SUBSCRIBERS</th>
@@ -99,14 +97,37 @@
     
                            </tr>
                            <tr class="table-light">
-                               <th scope="col" id="th">247</th>
-                               <th scope="col" id="th">7.78M</th>
-                               <th scope="col" id="th">3,539,007,623</th>
+                               <th scope="col" id="th">{{result[0].Video_counts}}</th>
+                               <th scope="col" id="th">{{result[0].Subscrib_counts}}</th>
+                               <th scope="col" id="th">{{result[0].View_counts}}</th>
                            </tr>
+                           <tr class="table-light">
+                               <th scope="col" id="th">UPLOAD</th>
+                               <th scope="col" id="th">SUBSCRIBERS</th>
+                               <th scope="col" id="th">VIDEO VIEWS</th>
+    
+                           </tr>
+                           <tr class="table-light">
+                               <th scope="col" id="th">{{result[0].Video_counts}}</th>
+                               <th scope="col" id="th">{{result[0].Subscrib_counts}}</th>
+                               <th scope="col" id="th">{{result[0].View_counts}}</th>
+                           </tr>
+                           <tr class="table-light">
+                            <th scope="col" id="th">UPLOAD</th>
+                            <th scope="col" id="th">SUBSCRIBERS</th>
+                            <th scope="col" id="th">VIDEO VIEWS</th>
+ 
+                          </tr>
+                          <tr class="table-light">
+                              <th scope="col" id="th">{{result[0].Video_counts}}</th>
+                              <th scope="col" id="th">{{result[0].Subscrib_counts}}</th>
+                              <th scope="col" id="th">{{result[0].View_counts}}</th>
+                          </tr>
                        </thead>
                    </table>
                    <!-- <button type="button" class="btn btn-outline-dark mx-5 px-5">See More</button> -->
                  </div>
+                
                 
            
                  <div class="col-sm">
