@@ -6,7 +6,7 @@ mydb, cursor = login_mysql.login()
 app = Flask(__name__)
 CORS(app, resources={r'*': {'origins': 'https://www.banner.yt/'}})
 
-@app.route("/main")
+@app.route("/")
 def mainpage():
     from db import mains
     influencer = mains.main_influencer()
