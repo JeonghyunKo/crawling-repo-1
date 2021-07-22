@@ -28,7 +28,7 @@ def ch_video(chid):
     cursor.execute(qry1)
     viewcount = cursor.fetchall()
     viewcount = pd.DataFrame(viewcount)
-
+    viewcount["Timestamp"] = viewcount["Timestamp"].astype("str")
     qry2 = """
     select DISTINCT Video_Id, Channel_Id, Brand, Video_title, Pub_date
     from Dimension_Video3
@@ -50,7 +50,20 @@ def ch_video(chid):
     
     total_df.reset_index(drop=True, inplace = True)
     
-    return total_df
+    bestvideo = list(total_df.iloc[:5]["Video_ID"])
+    rank1, rank2, rank3, rank4, rank5 = pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame()    
+    ranklist = [rank1, rank2, rank3, rank4, rank5]
+    for num, i in enumerate(bestvideo):
+        ranklist[num] = viewcount[viewcount["Video_ID"] == i].reset_index(drop=True).to_dict()
+   
+    graphvalues=[]
+    for i in range(len(ranklist)):
+        try:
+            graphvalues.append(list(ranklist[i]["View_counts"].values()))
+        except:
+            continue
+    
+    return total_df, ranklist, graphvalues
 
 
 def ch_detail(chid):
@@ -90,9 +103,18 @@ def ch_detail(chid):
     """
     cursor.execute(qry, chid)
     result = cursor.fetchall()   
-    result[0]["viewper"] = round(result[0]["diff_View"] / result[0]["Prev_View"], 4)*100
-    result[0]["subper"] = round(result[0]["diff_Sub"] / result[0]["Prev_Sub"], 4)*100
-    result[0]["vdper"] = round(result[0]["diff_Video"] / result[0]["Prev_cnt"], 4)*100
+    try: 
+        result[0]["viewper"] = round(result[0]["diff_View"] / result[0]["Prev_View"], 4)*100
+    except: 
+        result[0]["viewper"] = "(no increase)"
+    try:
+        result[0]["subper"] = round(result[0]["diff_Sub"] / result[0]["Prev_Sub"], 4)*100
+    except:
+        result[0]["subper"] = "(hidden)"
+    try:
+        result[0]["vdper"] = round(result[0]["diff_Video"] / result[0]["Prev_cnt"], 4)*100
+    except:
+        result[0]["vdper"] = "(no increase)"
     return result 
 
 def ch_recent(chid):

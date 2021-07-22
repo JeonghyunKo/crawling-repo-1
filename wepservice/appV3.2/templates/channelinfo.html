@@ -1,76 +1,119 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.1.1/highcharts.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-        
+  <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.1.1/highcharts.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.1.1/highcharts.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
+    
 		<meta charset="EUC-KR">
 
-<title>Social Explorer</title>
-<link rel="shortcut icon" href="static/images//favicon.ico" type="image/x-icon">
-<link rel="icon" href="static/images//favicon.ico" type="image/x-icon">
-</head>
-<body class="d-flex h-100 text-center text-dark colorset">
-	<style>
-    a:link {
-        color : green;
-        text-decoration: none;
-      }
-    a:visited {
-        color : green;
-        text-decoration: none;
-      }  
-    .colorset {
-      background-color: #141414; 
-     
-      }
-    .imgsize {
-      width: 100%;
-      max-width: 600px;
-      }
-    .wrap {
-      display: table-cell;
-      vertical-align: middle;
-      }
-    
-    p {
-      font-family: 'Raleway', sans-serif;
-      font-weight: 400;
-    }
-    h3 {
-      font-family: 'Raleway', sans-serif;
-      font-weight: 600;
-    }
+    <title>Social Explorer</title>
+    <link rel="shortcut icon" href="static/images//favicon.ico" type="image/x-icon">
+    <link rel="icon" href="static/images//favicon.ico" type="image/x-icon">
+    </head>
+    <body class="d-flex h-100 text-center text-dark colorset">
+      <style>
+        a:link {
+            color : green;
+            text-decoration: none;
+          }
+        a:visited {
+            color : green;
+            text-decoration: none;
+          }  
+        .colorset {
+          background-color: #141414; 
+        
+          }
+        .imgsize {
+          width: 100%;
+          max-width: 600px;
+          }
+        .wrap {
+          display: table-cell;
+          vertical-align: middle;
+          }
+        
+        p {
+          font-family: 'Raleway', sans-serif;
+          font-weight: 400;
+        }
+        h3 {
+          font-family: 'Raleway', sans-serif;
+          font-weight: 600;
+        }
 
-    .bold {
-      font-family: 'Raleway', sans-serif;
-      font-weight: 600;
-    }
-    #table{
-        background-color:#FAFAFA;
-        border-top : 150px;
-        padding-bottom:30px;
-    }
-    #ary1{
-        padding-top:30px;
-    }
+        .bold {
+          font-family: 'Raleway', sans-serif;
+          font-weight: 600;
+        }
+        #table{
+            background-color:#FAFAFA;
+            border-top : 150px;
+            padding-bottom:30px;
+        }
+        #ary1{
+            padding-top:30px;
+        }
+        .highcharts-figure, .highcharts-data-table table {
+          min-width: 360px; 
+          max-width: 800px;
+          margin: 1em auto;
+        }
 
-  </style>
-	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column colorset">
-		<header class="mb-au auto">
-      <div>
-      <h4 class="float-md-start mb-0">Social Explorer</h4>
-      <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
-        <a class="nav-link" href="http://127.0.0.1:5000/brand">Brand</a>
-        <a class="nav-link" href="http://127.0.0.1:5000/influencer">Influencer</a>
-      </nav>
-      </div>
-    </header>
-		<main>
+        .highcharts-data-table table {
+          font-family: Verdana, sans-serif;
+          border-collapse: collapse;
+          border: 1px solid #EBEBEB;
+          margin: 10px auto;
+          text-align: center;
+          width: 100%;
+          max-width: 500px;
+        }
+        .highcharts-data-table caption {
+          padding: 1em 0;
+          font-size: 1.2em;
+          color: #555;
+        }
+        .highcharts-data-table th {
+          font-weight: 600;
+          padding: 0.5em;
+        }
+        .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+          padding: 0.5em;
+        }
+        .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+          background: #f8f8f8;
+        }
+        .highcharts-data-table tr:hover {
+          background: #f1f7ff;
+        }
+
+      </style>
+      <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column colorset">
+        <header class="mb-au auto">
+          <div>
+          <h4 class="float-md-start mb-0">Social Explorer</h4>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/brand">Brand</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/influencer">Influencer</a>
+          </nav>
+          </div>
+      </header >
+      <main>
 	    	<div>
 	        	<img src="static/images/beetle.png" alt="car" class="img-fluid" style="max-width: 20%; height: auto;">
 	        </div>
@@ -150,7 +193,7 @@
                                <td> Created </td>
                            </tr>
                            <tr class="table-light">
-                               <td scope="col">{{result[0].Publbished}}</td>
+                               <td scope="col">{{result[0].Publbished[:10]}}</td>
                            </tr>
                        </thead>
                   </table>
@@ -260,6 +303,17 @@
                     </tbody>
                   </table>
                 </div>
+                
+                <div class = "col-sm">
+                <figure class="highcharts-figure">
+                  <div id="container"></div>
+                  <p class="highcharts-description">
+                    <!-- Basic line chart showing trends in a dataset. This chart includes the
+                    <code>series-label</code> module, which adds a label to each line for
+                    enhanced readability. -->
+                  </p>
+                </figure>
+                </div>
                 <br><br>
                 <div class="container" id="table">   
                   <h4>New Videos</h4><br>                        
@@ -317,9 +371,81 @@
                   </table>
                 </div>
  
-               
+              <script>
+               Highcharts.chart('container', {
 
-				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                title: {
+                    text: 'Trending : 일간 조회수'
+                },
+
+                subtitle: {
+                    text: '주간 인기 동영상들의 일간 조회수입니다 :)'
+                },
+
+                yAxis: {
+                    title: {
+                        text: 'View Counts'
+                    }
+                },
+
+                xAxis: {
+                    accessibility: {
+                        rangeDescription: 'Range: {{ranklist[0]["Timestamp"][0]}} to {{ranklist[0]["Timestamp"][-1]}}'
+                    }
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: {{ranklist[0]["Timestamp"][0]}}
+                    }
+                },
+
+                series: [{
+                    name: '{{videols.Video_title[0]}}',
+                    data: {{graphvalues[0]}}
+                }, {
+                    name: '{{videols.Video_title[1]}}',
+                    data: [24916, 24064, 29742, 29851]
+                }, {
+                    name: '{{videols.Video_title[2]}}',
+                    data: [11744, 17722, 16005, 19771]
+                }, {
+                    name: '{{videols.Video_title[3]}}',
+                    data: [null, null, 7988, 12169]
+                }, {
+                    name: '{{videols.Video_title[4]}}',
+                    data: [12908, 5948, 8105, 11248]
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+                });
+                          
+              </script> 
+
+				
 
 
 			</main>

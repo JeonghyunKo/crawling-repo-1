@@ -23,12 +23,13 @@ def channel(chname):
 def index():
     from db import eachch
     searchword = request.form["searchword"]   
-    result = eachch.ch_info(searchword)  
+    result = eachch.ch_info(searchword)
     chid = result[0]["Channel_Id"]
-    videols = eachch.ch_video(chid)  
+    videols, ranklist, graphvalues = eachch.ch_video(chid)  
     detail = eachch.ch_detail(chid)
     newlist = eachch.ch_recent(chid)
-    return render_template("channelinfo.html", result=result, videols=videols, detail=detail, newlist=newlist)
+    return render_template("channelinfo.html", result=result, videols=videols, detail=detail, 
+    newlist=newlist, ranklist=ranklist, graphvalues=graphvalues)
     
 
 
