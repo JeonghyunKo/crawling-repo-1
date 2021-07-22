@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.1.1/highcharts.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.1.1/highcharts.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
+    
+		<meta charset="EUC-KR">
+
+    <title>Social Explorer</title>
+    <link rel="shortcut icon" href="static/images//favicon.ico" type="image/x-icon">
+    <link rel="icon" href="static/images//favicon.ico" type="image/x-icon">
+    </head>
+    <body class="d-flex h-100 text-center text-dark colorset">
+      <style>
+        a:link {
+            color : green;
+            text-decoration: none;
+          }
+        a:visited {
+            color : green;
+            text-decoration: none;
+          }  
+        .colorset {
+          background-color: #141414; 
+        
+          }
+        .imgsize {
+          width: 100%;
+          max-width: 600px;
+          }
+        .wrap {
+          display: table-cell;
+          vertical-align: middle;
+          }
+        
+        p {
+          font-family: 'Raleway', sans-serif;
+          font-weight: 400;
+        }
+        h3 {
+          font-family: 'Raleway', sans-serif;
+          font-weight: 600;
+        }
+
+        .bold {
+          font-family: 'Raleway', sans-serif;
+          font-weight: 600;
+        }
+        #table{
+            background-color:#FAFAFA;
+            border-top : 150px;
+            padding-bottom:30px;
+        }
+        #ary1{
+            padding-top:30px;
+        }
+        .highcharts-figure, .highcharts-data-table table {
+          min-width: 360px; 
+          max-width: 800px;
+          margin: 1em auto;
+        }
+
+        .highcharts-data-table table {
+          font-family: Verdana, sans-serif;
+          border-collapse: collapse;
+          border: 1px solid #EBEBEB;
+          margin: 10px auto;
+          text-align: center;
+          width: 100%;
+          max-width: 500px;
+        }
+        .highcharts-data-table caption {
+          padding: 1em 0;
+          font-size: 1.2em;
+          color: #555;
+        }
+        .highcharts-data-table th {
+          font-weight: 600;
+          padding: 0.5em;
+        }
+        .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+          padding: 0.5em;
+        }
+        .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+          background: #f8f8f8;
+        }
+        .highcharts-data-table tr:hover {
+          background: #f1f7ff;
+        }
+
+      </style>
+      <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column colorset">
+        <header class="mb-au auto">
+          <div>
+          <h4 class="float-md-start mb-0">Social Explorer</h4>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/brand">Brand</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/influencer">Influencer</a>
+          </nav>
+          </div>
+      </header >
+      <main>
+	    	<div>
+	        	<img src="static/images/beetle.png" alt="car" class="img-fluid" style="max-width: 20%; height: auto;">
+	        </div>
+	        <h1 class="bold font text-white">Social Explorer</h1>
+	        <div class="mx-auto col-sm-3">
+	        	<div class="input-group mb-3 pb-5">
+	            	<!-- <input type="text" class="form-control" placeholder="Channel Name" aria-label="Channel name"      aria-describedby="button-addon2">
+	                <button class="btn btn-outline-dark fw-bold" type="button" id="button-addon2">explore!</button> -->
+	            </div>
+	       </div>
+              <div class="container" id = "bannerimg">
+                <table class="table-white table-hover">
+                  <thead>
+                      <img src="https://www.banner.yt/{{result[0].Channel_Id}}" alt="이미지" class="img-fluid"> 
+                  </thead>
+              </table>
+              </div>
+	            <div class="container" id="table">
+              <br>  
+              <div class="row">
+                 <h3 class="bold font text-dark py-5">{{result[0].Chnnel_Title}}</h3>
+              </div>
+              <div class="row">
+                
+                <div class="col-sm">
+                  <table class="table-white table-hover pb-5 mb-5 mx-auto">
+                       <thead><br>
+                           <tr class="table-light">
+                               <td> Channel Type </td>
+                           </tr>
+                           <tr class="table-light">
+                               <th scope="col">{{result[0].Channel_genre}}</th>
+                           </tr>
+                       </thead>
+                  </table>
+                </div>
+                <div class="col-sm">
+                  <table class="table-white table-hover pb-5 mb-5 mx-auto">
+                       <thead><br>
+                           <tr class="table-light">
+                               <td> Total Views </td>
+                           </tr>
+                           <tr class="table-light">
+                               <th scope="col">{{result[0].View_counts}}</th>
+                           </tr>
+                       </thead>
+                  </table>
+                </div>
+                <div class="col-sm">
+                  <table class="table-white table-hover pb-5 mb-5 mx-auto">
+                       <thead><br>
+                           <tr class="table-light">
+                               <td> Subscribers </td>
+                           </tr>
+                           <tr class="table-light">
+                               <th scope="col">{{result[0].Subscrib_counts}}</th>
+                           </tr>
+                       </thead>
+                  </table>
+                </div>
+                <div class="col-sm">
+                  <table class="table-white table-hover pb-5 mb-5 mx-auto">
+                       <thead><br>
+                           <tr class="table-light">
+                               <td> Video Counts </td>
+                           </tr>
+                           <tr class="table-light">
+                               <th scope="col">{{result[0].Video_counts}}</th>
+                           </tr>
+                       </thead>
+                  </table>
+                </div>
+                <div class="col-sm">
+                  <table class="table-white table-hover pb-5 mb-5 mx-auto">
+                       <thead><br>
+                           <tr class="table-light">
+                               <td> Created </td>
+                           </tr>
+                           <tr class="table-light">
+                               <td scope="col">{{result[0].Publbished[:10]}}</td>
+                           </tr>
+                       </thead>
+                  </table>
+                </div>
+              </div>
+              <hr style="border: dashed 1px;color: #949494 ; width:80%; margin-left:10%; margin-right:10%">
+	            <div class="container py-10" id="table">
+	              <div class="row">
+	               <div class="col-sm pt-5 ">
+	                 <table class="table-light table-hover py-5 mb-5 mx-auto">
+                        <thead>
+                            <h6 class="font text-dark" id="plusnumber">+ {{detail[0].subper}} %</h6>
+                            <h3 class="py-1 font text-dark">+ {{detail[0].diff_Sub}}</h3>
+                            <tr class="table-light">
+                                <th scope="col">Subscriber Increase</th>
+                            </tr>
+                            
+                        </thead>
+	                  </table>
+	                  <!-- <button type="button" class="btn btn-outline-dark mx-5 px-5">See More</button>-->
+				          	</div>
+
+                    <div class="col-sm pt-5 ">
+                        <table class="table-white table-hover py-5 mb-5 mx-auto">
+                           <thead>
+                               <h6 class="font text-dark" id="plusnumber">+ {{detail[0].vdper}} %</h1>
+                               <h3 class="py-1 font text-dark">{{detail[0].diff_Video}}</h3>
+                               <tr class="table-light">
+                                   <th scope="col">Video Increase</th>
+                               </tr>
+                               
+                           </thead>
+                         </table>
+                         <!-- <button type="button" class="btn btn-outline-dark mx-5 px-5">See More</button> -->
+                       </div>
+
+                       <div class="col-sm pt-5 ">
+                        <table class="table-white table-hover mb-5 mx-auto">
+                           <thead>
+                               <h6 class="font text-dark" id="plusnumber">+ {{detail[0].viewper}} %</h6>
+                               <h3 class="py-1 font text-dark">{{detail[0].diff_View}}</h3>
+                               <tr class="table-light">
+                                   <th scope="col">View Increase</th>
+                               </tr>
+                               
+                           </thead>
+                         </table>
+                         <!-- <button type="button" class="btn btn-outline-dark mx-5 px-5">See More</button> -->
+                       </div>
+
+	              
+	            </div>
+                <br><br>
+ 
+                <div class="container" id="table">    
+                  <h4>Trending: Popular videos from the past week</h4><br>                         
+                  <table class="table table-condensed" >
+                    <thead id="title_BG">
+                      <tr>
+                        <th>#</th>
+                        <!-- <th>Channel</th> -->
+                        <th>Title</th>
+                        <th>Publish Date</th>
+                        <th>View Count Increase</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        
+                        <td>1</td>
+                        <!-- <td>{{videols.Brand[0]}}</td> -->
+                        <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[0]}}">{{videols.Video_title[0]}}</a></td>
+                        <td>{{videols.Pub_date[0]}}</td>
+                        <td>{{videols.increase[0]}}</td>
+                        
+                      </tr>
+                      
+                      <tr>
+                          <td>2</td>
+                          <!-- <td>{{videols.Brand[1]}}</td> -->
+                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[1]}}">{{videols.Video_title[1]}}</a></td>
+                          <td>{{videols.Pub_date[1]}}</td>
+                          <td>{{videols.increase[1]}}</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <!-- <td>{{videols.Brand[2]}}</td> -->
+                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[2]}}">{{videols.Video_title[2]}}</a></td>
+                          <td>{{videols.Pub_date[2]}}</td>
+                          <td>{{videols.increase[2]}}</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <!-- <td>{{videols.Brand[3]}}</td> -->
+                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[3]}}">{{videols.Video_title[3]}}</a></td>
+                          <td>{{videols.Pub_date[3]}}</td>
+                          <td>{{videols.increase[3]}}</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <!-- <td>{{videols.Brand[4]}}</td> -->
+                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[4]}}">{{videols.Video_title[4]}}</a></td>
+                          <td>{{videols.Pub_date[4]}}</td>
+                          <td>{{videols.increase[4]}}</td>
+                        </tr>
+                        
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class = "col-sm">
+                <figure class="highcharts-figure">
+                  <div id="container"></div>
+                  <p class="highcharts-description">
+                    <!-- Basic line chart showing trends in a dataset. This chart includes the
+                    <code>series-label</code> module, which adds a label to each line for
+                    enhanced readability. -->
+                  </p>
+                </figure>
+                </div>
+                <br><br>
+                <div class="container" id="table">   
+                  <h4>New Videos</h4><br>                        
+                  <table class="table table-condensed" >
+                    <thead id="title_BG">
+                      <tr>
+                        <th>#</th>
+                        <!-- <th>Channel</th> -->
+                        <th>Title</th>
+                        <th>Publish Date</th>
+                        <!-- <th>View Count Increase</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        
+                        <td>1</td>
+                   
+                        <td><a href="https://www.youtube.com/watch?v={{newlist[0].Video_Id}}">{{newlist[0].Video_title}}</a></td>
+                        <td>{{newlist[0].Pub_date}}</td>
+                        
+                        
+                      </tr>
+                      
+                      <tr>
+                          <td>2</td>
+                        
+                          <td><a href="https://www.youtube.com/watch?v={{newlist[1].Video_Id}}">{{newlist[1].Video_title}}</a></td>
+                          <td>{{newlist[1].Pub_date}}</td>
+
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          
+                          <td><a href="https://www.youtube.com/watch?v={{newlist[2].Video_Id}}">{{newlist[2].Video_title}}</a></td>
+                          <td>{{newlist[2].Pub_date}}</td>
+                 
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                         
+                          <td><a href="https://www.youtube.com/watch?v={{newlist[3].Video_Id}}">{{newlist[3].Video_title}}</a></td>
+                          <td>{{newlist[3].Pub_date}}</td>
+                         
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                        
+                          <td><a href="https://www.youtube.com/watch?v={{newlist[4].Video_Id}}">{{newlist[4].Video_title}}</a></td>
+                          <td>{{newlist[4].Pub_date}}</td>
+                    
+                        </tr>
+                        
+                    </tbody>
+                  </table>
+                </div>
+ 
+              <script>
+               Highcharts.chart('container', {
+
+                title: {
+                    text: 'Trending : 일간 조회수'
+                },
+
+                subtitle: {
+                    text: '주간 인기 동영상들의 일간 조회수입니다 :)'
+                },
+
+                yAxis: {
+                    title: {
+                        text: 'View Counts'
+                    }
+                },
+
+                xAxis: {
+                    accessibility: {
+                        rangeDescription: 'Range: {{ranklist[0]["Timestamp"][0]}} to {{ranklist[0]["Timestamp"][-1]}}'
+                    }
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: {{ranklist[0]["Timestamp"][0]}}
+                    }
+                },
+
+                series: [{
+                    name: '{{videols.Video_title[0]}}',
+                    data: {{graphvalues[0]}}
+                }, {
+                    name: '{{videols.Video_title[1]}}',
+                    data: [24916, 24064, 29742, 29851]
+                }, {
+                    name: '{{videols.Video_title[2]}}',
+                    data: [11744, 17722, 16005, 19771]
+                }, {
+                    name: '{{videols.Video_title[3]}}',
+                    data: [null, null, 7988, 12169]
+                }, {
+                    name: '{{videols.Video_title[4]}}',
+                    data: [12908, 5948, 8105, 11248]
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+                });
+                          
+              </script> 
+
+				
+
+
+			</main>
+	        <footer class="mt-auto text-white-50 colorset">
+            <br><br><br><br><br><br>
+                  <p>Contributors : <a href="https://github.com/JeonghyunKo" class="text-white colorset">KJH</a>, <a href="https://github.com/lee-edgar" class="text-white">LDJ</a> and <a href="https://github.com/metahong" class="text-white">HSY</a>.</p>
+            <br><br>
+          </footer>
+		</div>
+	</body>
+</html>
