@@ -87,7 +87,7 @@ def brief_view():
 def video_list():
     qry1 = """
     select Video_ID, View_counts, Timestamp from Fact_VideoResponse
-    WHERE Timestamp >=subdate(curdate(),7) and Timestamp<(curdate());
+    WHERE Timestamp >=(20210701) and Timestamp<(20210708);
     """
     cursor.execute(qry1)
     viewcount = cursor.fetchall()
