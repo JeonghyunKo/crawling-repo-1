@@ -21,13 +21,16 @@ def channel(chname):
 
 @app.route('/channelinfo', methods=["GET", "POST"]) 
 def index():
-    from db import eachch
-    searchword = request.form["searchword"]   
-    result = eachch.ch_info(searchword)
-    chid = result[0]["Channel_Id"]
-    videols, ranklist, graphvalues = eachch.ch_video(chid)  
-    detail = eachch.ch_detail(chid)
-    newlist = eachch.ch_recent(chid)
+    try:
+        from db import eachch
+        searchword = request.form["searchword"]   
+        result = eachch.ch_info(searchword)
+        chid = result[0]["Channel_Id"]
+        videols, ranklist, graphvalues = eachch.ch_video(chid)  
+        detail = eachch.ch_detail(chid)
+        newlist = eachch.ch_recent(chid)
+    except IndexError:
+        return render_template("except.html")
     return render_template("channelinfo.html", result=result, videols=videols, detail=detail, 
     newlist=newlist, ranklist=ranklist, graphvalues=graphvalues)
     

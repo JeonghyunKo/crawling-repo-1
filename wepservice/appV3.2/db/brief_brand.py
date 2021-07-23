@@ -58,7 +58,7 @@ def brief_video():
     result = cursor.fetchall()
     
     return result
-
+    
 def brief_view():
     qry = """
     SELECT 
@@ -80,13 +80,14 @@ def brief_view():
         WHERE 
             Channel_genre = 'Brand') c
     WHERE c.Timestamp = (select Timestamp from Fact_channelResponse order by Timestamp DESC limit 1)
+
     ORDER BY diff_View DESC;
     """
     cursor.execute(qry)
     result = cursor.fetchall()
     
     return result
-
+    
 def video_list():
     qry1 = """
     select Video_ID, View_counts, Timestamp from Fact_VideoResponse

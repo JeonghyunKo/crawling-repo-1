@@ -39,6 +39,7 @@ def ch_video(chid):
     chlist = pd.DataFrame(chlist)
 
     dates = viewcount.Timestamp.unique()
+    
     lastday = viewcount[viewcount["Timestamp"] == dates[0]]
     recent = viewcount[viewcount["Timestamp"] == dates[-1]]
     total = pd.merge(left = recent, right = lastday, on = "Video_ID")
