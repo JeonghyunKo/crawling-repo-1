@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.1.1/highcharts.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="static/images//favicon.ico" type="image/x-icon">
+<link rel="icon" href="static/images//favicon.ico" type="image/x-icon">
+<meta charset="EUC-KR">
+
+<head>
+  <title>Social Explorer</title>
+  <link rel="shortcut icon" href="static/images//favicon.ico" type="image/x-icon">
+  <link rel="icon" href="static/images//favicon.ico" type="image/x-icon">
+
+</head>
+
+<body class="d-flex h-100 text-center text-white colorset">
+
+
+  <style>
+    a:link {
+      color: green;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: green;
+      text-decoration: none;
+    }
+
+    .colorset {
+      background-color: #141414;
+    }
+
+    .imgsize {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .wrap {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    p {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+    }
+
+    h3 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+    }
+
+    .bold {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+    }
+  </style>
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column colorset">
+    <header class="mb-au auto">
+      <div>
+        <h4 class="float-md-start mb-0">S.E.</h4>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div>
+        <br><br><br><br>
+        <h1 class="bold">Sorry, We couldn't find that page</h1><br>
+        <h4 calss="blod">Return to the main page in 20 seconds.</h4>
+        <img src="static/images/beetle.png" alt="car" class="img-fluid imgsize">
+      </div>
+      <h1 class="bold">Social Explorer</h1>
+      <p class="lead">Explore the automotive industry via Youtube brand channels and influencers
+      </p>
+      <br><br>
+      <div class="mx-auto col-sm-2">
+        <form action="/channelinfo" method="post">
+         <div class="input-group mb-5 pb-3">
+            <button class="btn btn-outline-light fw-bold explore" type="submit" id="button-addon2">
+              <a href="http://127.0.0.1:5000/">Return to Main Page</a></button>
+          </div> 
+
+        
+          
+        </form>
+      </div>
+      <div class="container px-10">
+        <div class="row">
+        </div>
+      </div>
+
+      <!-- influencer script -->
+
+      <!-- <div class="print"> inf1 {{influencer}}</div> -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $('.explore').on('click', function () {
+            var text = $('.chname').val();
+            console.log(text);
+          })
+        })
+      </script>
+      <script>
+        setTimeout(function() {
+        // alert('http://127.0.0.1:5000/'),
+        location.href="http://127.0.0.1:5000/"
+        }, 20000);
+      </script>
+
+
+    </main>
+    <footer class="mt-auto text-white-50 colorset">
+      <br><br><br><br><br><br>
+      <p>Contributors : <a href="https://github.com/JeonghyunKo" class="text-white colorset">KJH</a>, <a
+          href="https://github.com/lee-edgar" class="text-white">LDJ</a> and <a href="https://github.com/metahong"
+          class="text-white">HSY</a>.</p>
+      <br><br>
+    </footer>
+
+  </div>
+</body>
+
+</html>
