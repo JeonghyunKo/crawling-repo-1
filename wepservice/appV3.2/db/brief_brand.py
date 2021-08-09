@@ -15,14 +15,14 @@ def brief_sub():
         (SELECT
             b.Brand
             , date(a.Timestamp) as Timestamp
-            , CAST(REPLACE(a.Subscrib_counts, 'hidden', 0) AS signed integer) as Subscribe
-            , LAG(CAST(REPLACE(a.Subscrib_counts, 'hidden', 0) AS signed integer)) 
-            OVER(ORDER BY b.brand, a.Timestamp ASC) as Prev_Sub
+            , CAST(REPLACE(a.Subscribe_Counts, 'hidden', 0) AS signed integer) as Subscribe
+            , LAG(CAST(REPLACE(a.Subscribe_Counts, 'hidden', 0) AS signed integer)) 
+            OVER(ORDER BY b.Brand, a.Timestamp ASC) as Prev_Sub
         FROM Fact_channelResponse a
         LEFT JOIN dim_ch b
         ON a.Channel_Id = b.Channel_Id
         WHERE 
-            Channel_genre = 'Brand') c
+            Channel_Genre = 'Brand') c
     WHERE c.Timestamp = (select Timestamp from Fact_channelResponse order by Timestamp DESC limit 1)
     ORDER BY diff_Sub DESC;
     """
@@ -43,14 +43,14 @@ def brief_video():
         (SELECT
             b.Brand
             , date(a.Timestamp) as Timestamp
-            , CAST(a.Video_counts AS signed integer) as Video_cnt
-            , LAG(CAST(a.Video_counts AS signed integer)) 
-            OVER(ORDER BY b.brand, a.Timestamp ASC) as Prev_Vcnt
+            , CAST(a.Video_Counts AS signed integer) as Video_cnt
+            , LAG(CAST(a.Video_Counts AS signed integer)) 
+            OVER(ORDER BY b.Brand, a.Timestamp ASC) as Prev_Vcnt
         FROM Fact_channelResponse a
         LEFT JOIN dim_ch b
         ON a.Channel_Id = b.Channel_Id
         WHERE 
-            Channel_genre = 'Brand') c
+            Channel_Genre = 'Brand') c
     WHERE c.Timestamp = (select Timestamp from Fact_channelResponse order by Timestamp DESC limit 1)
     ORDER BY diff_Video DESC;
     """
@@ -71,14 +71,14 @@ def brief_view():
         (SELECT
             b.Brand
             , date(a.Timestamp) as Timestamp
-            , CAST(a.View_counts AS signed integer) as View
-            , LAG(CAST(a.View_counts AS signed integer)) 
-            OVER(ORDER BY b.brand, a.Timestamp ASC) as Prev_View
+            , CAST(a.View_Counts AS signed integer) as View
+            , LAG(CAST(a.View_Counts AS signed integer)) 
+            OVER(ORDER BY b.Brand, a.Timestamp ASC) as Prev_View
         FROM Fact_channelResponse a
         LEFT JOIN dim_ch b
         ON a.Channel_Id = b.Channel_Id
         WHERE 
-            Channel_genre = 'Brand') c
+            Channel_Genre = 'Brand') c
     WHERE c.Timestamp = (select Timestamp from Fact_channelResponse order by Timestamp DESC limit 1)
 
     ORDER BY diff_View DESC;
@@ -90,7 +90,7 @@ def brief_view():
     
 def video_list():
     qry1 = """
-    select Video_ID, View_counts, Timestamp from Fact_VideoResponse
+    select Video_ID, View_Counts, Timestamp from Fact_VideoResponse
     WHERE Timestamp >=(20210710) and Timestamp<(20210715);
     """
     cursor.execute(qry1)
@@ -98,7 +98,7 @@ def video_list():
     viewcount = pd.DataFrame(viewcount)
 
     qry2 = """
-    select DISTINCT Video_Id, Channel_Id, Brand, Channel_genre, Video_title, Pub_date
+    select DISTINCT Video_Id, Channel_Id, Brand, Channel_Genre, Video_Title, Published_Date
     from Dimension_Video3;
     """
     cursor.execute(qry2)
@@ -109,12 +109,12 @@ def video_list():
     lastday = viewcount[viewcount["Timestamp"] == dates[0]]
     recent = viewcount[viewcount["Timestamp"] == dates[-1]]
     total = pd.merge(left = recent, right = lastday, on = "Video_ID")
-    total["increase"] = total["View_counts_x"] - total["View_counts_y"]
+    total["increase"] = total["View_Counts_x"] - total["View_Counts_y"]
     total = total.sort_values(by="increase", ascending=False)
     total_df = pd.merge(left = total, right = chlist, 
         left_on ="Video_ID", right_on="Video_Id")
     
-    brand_df = total_df[total_df["Channel_genre"] == "Brand"]
+    brand_df = total_df[total_df["Channel_Genre"] == "Brand"]
     
     brand_df.reset_index(drop=True, inplace = True)
     

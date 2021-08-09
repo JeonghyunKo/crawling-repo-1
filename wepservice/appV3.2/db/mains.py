@@ -6,18 +6,18 @@ def main_influencer():
     qry = """
     SELECT 
     b.Brand
-    , date(b.Publbished) as Published
+    , date(b.Published_Date) as Published
     , date(a.Timestamp) as Timestamp
-    , CAST(a.View_counts AS signed integer) as View
-    , CAST(REPLACE(a.Subscrib_counts, 'hidden', 0) AS signed integer) as Subscribe
-    , CAST(a.Video_counts AS signed integer) as Video_cnt
-    , CAST(a.View_counts AS signed integer) / CAST(REPLACE(a.Subscrib_counts, 'hidden', 0) AS signed integer) as ViewperSub
-    , CAST(a.View_counts AS signed integer) / CAST(a.Video_counts AS signed integer) as ViewperVideo
+    , CAST(a.View_Counts AS signed integer) as View
+    , CAST(REPLACE(a.Subscribe_Counts, 'hidden', 0) AS signed integer) as Subscribe
+    , CAST(a.Video_Counts AS signed integer) as Video_cnt
+    , CAST(a.View_Counts AS signed integer) / CAST(REPLACE(a.Subscribe_Counts, 'hidden', 0) AS signed integer) as ViewperSub
+    , CAST(a.View_Counts AS signed integer) / CAST(a.Video_Counts AS signed integer) as ViewperVideo
     FROM Fact_channelResponse a
     LEFT JOIN dim_ch b
     ON a.Channel_Id = b.Channel_Id
     WHERE 
-        Channel_genre = 'Influencer'
+        Channel_Genre = 'Influencer'
         and Timestamp = (select Timestamp from Fact_channelResponse order by Timestamp DESC limit 1)
     ORDER BY Subscribe DESC;
     """
@@ -31,19 +31,19 @@ def main_brand():
     qry = """
     SELECT 
     b.Brand
-    , date(b.Publbished) as Published
+    , date(b.Published_Date) as Published
     , date(a.Timestamp) as Timestamp
-    , CAST(a.View_counts AS signed integer) as View
-    , CAST(REPLACE(a.Subscrib_counts, 'hidden', 0) AS signed integer) as Subscribe
-    , CAST(a.Video_counts AS signed integer) as Video_cnt
-    , CAST(a.View_counts AS signed integer) / CAST(REPLACE(a.Subscrib_counts, 'hidden', 0) AS signed integer) as ViewperSub
-    , CAST(a.View_counts AS signed integer) / CAST(a.Video_counts AS signed integer) as ViewperVideo
+    , CAST(a.View_Counts AS signed integer) as View
+    , CAST(REPLACE(a.Subscribe_Counts, 'hidden', 0) AS signed integer) as Subscribe
+    , CAST(a.Video_Counts AS signed integer) as Video_cnt
+    , CAST(a.View_Counts AS signed integer) / CAST(REPLACE(a.Subscribe_Counts, 'hidden', 0) AS signed integer) as ViewperSub
+    , CAST(a.View_Counts AS signed integer) / CAST(a.Video_Counts AS signed integer) as ViewperVideo
 
     FROM Fact_channelResponse a
     LEFT JOIN dim_ch b
     ON a.Channel_Id = b.Channel_Id
     WHERE 
-        Channel_genre = 'Brand'
+        Channel_Genre = 'Brand'
         and Timestamp = (select Timestamp from Fact_channelResponse order by Timestamp DESC limit 1)
     ORDER BY Subscribe DESC;
     """

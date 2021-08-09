@@ -131,7 +131,7 @@
 	            <div class="container" id="table">
               <br>  
               <div class="row">
-                 <h3 class="bold font text-dark py-5">{{result[0].Chnnel_Title}}</h3>
+                 <h3 class="bold font text-dark py-5">{{result[0].Channel_Title}}</h3>
               </div>
               <div class="row">
                 
@@ -142,7 +142,7 @@
                                <td> Channel Type </td>
                            </tr>
                            <tr class="table-light">
-                               <th scope="col">{{result[0].Channel_genre}}</th>
+                               <th scope="col">{{result[0].Channel_Genre}}</th>
                            </tr>
                        </thead>
                   </table>
@@ -154,7 +154,7 @@
                                <td> Total Views </td>
                            </tr>
                            <tr class="table-light">
-                               <th scope="col">{{result[0].View_counts}}</th>
+                               <th scope="col">{{result[0].View_Counts}}</th>
                            </tr>
                        </thead>
                   </table>
@@ -166,7 +166,7 @@
                                <td> Subscribers </td>
                            </tr>
                            <tr class="table-light">
-                               <th scope="col">{{result[0].Subscrib_counts}}</th>
+                               <th scope="col">{{result[0].Subscribe_Counts}}</th>
                            </tr>
                        </thead>
                   </table>
@@ -178,7 +178,7 @@
                                <td> Video Counts </td>
                            </tr>
                            <tr class="table-light">
-                               <th scope="col">{{result[0].Video_counts}}</th>
+                               <th scope="col">{{result[0].Video_Counts}}</th>
                            </tr>
                        </thead>
                   </table>
@@ -190,7 +190,7 @@
                                <td> Created </td>
                            </tr>
                            <tr class="table-light">
-                               <td scope="col">{{result[0].Publbished[:10]}}</td>
+                               <td scope="col">{{result[0].Published_Date[:10]}}</td>
                            </tr>
                        </thead>
                   </table>
@@ -262,8 +262,8 @@
                         
                         <td>1</td>
                         <!-- <td>{{videols.Brand[0]}}</td> -->
-                        <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[0]}}">{{videols.Video_title[0]}}</a></td>
-                        <td>{{videols.Pub_date[0]}}</td>
+                        <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[0]}}">{{videols.Video_Title[0]}}</a></td>
+                        <td>{{videols.Published_Date[0]}}</td>
                         <td>{{videols.increase[0]}}</td>
                         
                       </tr>
@@ -271,29 +271,29 @@
                       <tr>
                           <td>2</td>
                           <!-- <td>{{videols.Brand[1]}}</td> -->
-                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[1]}}">{{videols.Video_title[1]}}</a></td>
-                          <td>{{videols.Pub_date[1]}}</td>
+                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[1]}}">{{videols.Video_Title[1]}}</a></td>
+                          <td>{{videols.Published_Date[1]}}</td>
                           <td>{{videols.increase[1]}}</td>
                         </tr>
                         <tr>
                           <td>3</td>
                           <!-- <td>{{videols.Brand[2]}}</td> -->
-                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[2]}}">{{videols.Video_title[2]}}</a></td>
-                          <td>{{videols.Pub_date[2]}}</td>
+                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[2]}}">{{videols.Video_Title[2]}}</a></td>
+                          <td>{{videols.Published_Date[2]}}</td>
                           <td>{{videols.increase[2]}}</td>
                         </tr>
                         <tr>
                           <td>4</td>
                           <!-- <td>{{videols.Brand[3]}}</td> -->
-                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[3]}}">{{videols.Video_title[3]}}</a></td>
-                          <td>{{videols.Pub_date[3]}}</td>
+                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[3]}}">{{videols.Video_Title[3]}}</a></td>
+                          <td>{{videols.Published_Date[3]}}</td>
                           <td>{{videols.increase[3]}}</td>
                         </tr>
                         <tr>
                           <td>5</td>
                           <!-- <td>{{videols.Brand[4]}}</td> -->
-                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[4]}}">{{videols.Video_title[4]}}</a></td>
-                          <td>{{videols.Pub_date[4]}}</td>
+                          <td><a href="https://www.youtube.com/watch?v={{videols.Video_ID[4]}}">{{videols.Video_Title[4]}}</a></td>
+                          <td>{{videols.Published_Date[4]}}</td>
                           <td>{{videols.increase[4]}}</td>
                         </tr>
                         
@@ -320,7 +320,7 @@
                         <th>#</th>
                         <!-- <th>Channel</th> -->
                         <th>Title</th>
-                        <th>Publish Date</th>
+                        <th>Published Date</th>
                         <!-- <th>View Count Increase</th> -->
                       </tr>
                     </thead>
@@ -329,8 +329,8 @@
                         
                         <td>1</td>
                    
-                        <td><a href="https://www.youtube.com/watch?v={{newlist[0].Video_Id}}">{{newlist[0].Video_title}}</a></td>
-                        <td>{{newlist[0].Pub_date}}</td>
+                        <td><a href="https://www.youtube.com/watch?v={{newlist[0].Video_Id}}">{{newlist[0].Video_Title}}</a></td>
+                        <td>{{newlist[0].Published_Date}}</td>
                         
                         
                       </tr>
@@ -338,29 +338,29 @@
                       <tr>
                           <td>2</td>
                         
-                          <td><a href="https://www.youtube.com/watch?v={{newlist[1].Video_Id}}">{{newlist[1].Video_title}}</a></td>
-                          <td>{{newlist[1].Pub_date}}</td>
+                          <td><a href="https://www.youtube.com/watch?v={{newlist[1].Video_Id}}">{{newlist[1].Video_Title}}</a></td>
+                          <td>{{newlist[1].Published_Date}}</td>
 
                         </tr>
                         <tr>
                           <td>3</td>
                           
-                          <td><a href="https://www.youtube.com/watch?v={{newlist[2].Video_Id}}">{{newlist[2].Video_title}}</a></td>
-                          <td>{{newlist[2].Pub_date}}</td>
+                          <td><a href="https://www.youtube.com/watch?v={{newlist[2].Video_Id}}">{{newlist[2].Video_Title}}</a></td>
+                          <td>{{newlist[2].Published_Date}}</td>
                  
                         </tr>
                         <tr>
                           <td>4</td>
                          
-                          <td><a href="https://www.youtube.com/watch?v={{newlist[3].Video_Id}}">{{newlist[3].Video_title}}</a></td>
-                          <td>{{newlist[3].Pub_date}}</td>
+                          <td><a href="https://www.youtube.com/watch?v={{newlist[3].Video_Id}}">{{newlist[3].Video_Title}}</a></td>
+                          <td>{{newlist[3].Published_Date}}</td>
                          
                         </tr>
                         <tr>
                           <td>5</td>
                         
-                          <td><a href="https://www.youtube.com/watch?v={{newlist[4].Video_Id}}">{{newlist[4].Video_title}}</a></td>
-                          <td>{{newlist[4].Pub_date}}</td>
+                          <td><a href="https://www.youtube.com/watch?v={{newlist[4].Video_Id}}">{{newlist[4].Video_Title}}</a></td>
+                          <td>{{newlist[4].Published_Date}}</td>
                     
                         </tr>
                         

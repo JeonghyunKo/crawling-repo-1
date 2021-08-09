@@ -10,9 +10,9 @@ def ch_info(channelname):
     FROM dim_ch 
     RIGHT JOIN Fact_channelResponse
     ON dim_ch.Channel_Id = Fact_channelResponse.Channel_Id
-    WHERE (timestamp = (select distinct Timestamp from Fact_channelResponse
+    WHERE (Timestamp = (select distinct Timestamp from Fact_channelResponse
 	ORDER BY Timestamp DESC limit 1)) and 
-    (Chnnel_Title like %s);
+    (Channel_Title like %s);
     """
     cursor.execute(qry, chname)
     #result = cursor.fetchall()
@@ -22,7 +22,7 @@ def ch_info(channelname):
 
 def ch_video(chid):
     qry1 = """
-    select Video_ID, View_counts, Timestamp from Fact_VideoResponse
+    select Video_ID, View_Counts, Timestamp from Fact_VideoResponse
     WHERE Timestamp >=(20210710) and Timestamp<(20210715);
     """
     cursor.execute(qry1)
@@ -30,7 +30,7 @@ def ch_video(chid):
     viewcount = pd.DataFrame(viewcount)
     viewcount["Timestamp"] = viewcount["Timestamp"].astype("str")
     qry2 = """
-    select DISTINCT Video_Id, Channel_Id, Brand, Video_title, Pub_date
+    select DISTINCT Video_Id, Channel_Id, Brand, Video_Title, Published_Date
     from Dimension_Video3
     WHERE (Channel_Id = %s);
     """
@@ -43,7 +43,7 @@ def ch_video(chid):
     lastday = viewcount[viewcount["Timestamp"] == dates[0]]
     recent = viewcount[viewcount["Timestamp"] == dates[-1]]
     total = pd.merge(left = recent, right = lastday, on = "Video_ID")
-    total["increase"] = total["View_counts_x"] - total["View_counts_y"]
+    total["increase"] = total["View_Counts_x"] - total["View_Counts_y"]
     total = total.sort_values(by="increase", ascending=False)
     total_df = pd.merge(left = total, right = chlist, 
         left_on ="Video_ID", right_on="Video_Id")
@@ -60,7 +60,7 @@ def ch_video(chid):
     graphvalues=[]
     for i in range(len(ranklist)):
         try:
-            graphvalues.append(list(ranklist[i]["View_counts"].values()))
+            graphvalues.append(list(ranklist[i]["View_Counts"].values()))
         except:
             continue
     
@@ -85,15 +85,15 @@ def ch_detail(chid):
         (SELECT
             b.Brand
             , date(a.Timestamp) as Timestamp
-            , CAST(a.View_counts AS signed integer) as View
-            , LAG(CAST(a.View_counts AS signed integer)) 
-            OVER(ORDER BY b.brand, a.Timestamp ASC) as Prev_View
-            , CAST(a.Video_counts AS signed integer) as Video_cnt
-            , LAG(CAST(a.Video_counts AS signed integer)) 
-            OVER(ORDER BY b.brand, a.Timestamp ASC) as Prev_cnt
-            , CAST(REPLACE(a.Subscrib_counts, 'hidden', 0) AS signed integer) as Subscribe
-            , LAG(CAST(REPLACE(a.Subscrib_counts, 'hidden', 0) AS signed integer)) 
-            OVER(ORDER BY b.brand, a.Timestamp ASC) as Prev_Sub
+            , CAST(a.View_Counts AS signed integer) as View
+            , LAG(CAST(a.View_Counts AS signed integer)) 
+            OVER(ORDER BY b.Brand, a.Timestamp ASC) as Prev_View
+            , CAST(a.Video_Counts AS signed integer) as Video_cnt
+            , LAG(CAST(a.Video_Counts AS signed integer)) 
+            OVER(ORDER BY b.Brand, a.Timestamp ASC) as Prev_cnt
+            , CAST(REPLACE(a.Subscribe_Counts, 'hidden', 0) AS signed integer) as Subscribe
+            , LAG(CAST(REPLACE(a.Subscribe_Counts, 'hidden', 0) AS signed integer)) 
+            OVER(ORDER BY b.Brand, a.Timestamp ASC) as Prev_Sub
         FROM Fact_channelResponse a
         LEFT JOIN dim_ch b
         ON a.Channel_Id = b.Channel_Id
@@ -121,10 +121,10 @@ def ch_detail(chid):
 def ch_recent(chid):
     
     qry2 = """
-    select DISTINCT Video_Id, Channel_Id, Video_title, Pub_date
+    select DISTINCT Video_Id, Channel_Id, Video_Title, Published_date
     from Dimension_Video3
     WHERE Channel_Id = %s
-    ORDER BY Pub_date DESC limit 5;
+    ORDER BY Published_Date DESC limit 5;
     """
     cursor.execute(qry2, chid)
     newlist = cursor.fetchall()
